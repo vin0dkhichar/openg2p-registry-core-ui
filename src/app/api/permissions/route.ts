@@ -8,9 +8,9 @@ export async function GET(req: NextRequest) {
 
     const backendConfig = getBackendConfig();
 
-    const iamUrl = `${backendConfig.iamUrl}/user-access/get_application_permissions_for_user?application_mnemonic=${backendConfig.applicationMnemonic}`;
+    const iamApiUrl = `${backendConfig.iamApiUrl}/user-access/get_application_permissions_for_user?application_mnemonic=${backendConfig.applicationMnemonic}`;
 
-    const res = await fetch(iamUrl, {
+    const res = await fetch(iamApiUrl, {
         method: 'GET',
         headers: auth.backendHeaders,
         cache: 'no-store',

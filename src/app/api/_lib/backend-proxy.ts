@@ -58,8 +58,8 @@ export async function proxyToBackend({
 
 		const baseUrl =
 			backend === "masterdata"
-				? backendConfig.masterdataBackendApiUrl
-				: backendConfig.backendApiUrl;
+				? backendConfig.masterdataApiUrl
+				: backendConfig.registryStaffApiUrl;
 
 		const backendUrl = `${baseUrl}${targetEndpoint}`;
 

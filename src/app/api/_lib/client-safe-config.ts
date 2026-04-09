@@ -9,7 +9,6 @@ type ClientSafeConfigShape = {
     partnerImportExportEnable: boolean;
     verifyServiceUrl: string;
     vpClientId: string;
-    partnerIngestUrl: string;
     pageSize: number;
     registryName: string;
     registryLogo: string;
@@ -21,9 +20,8 @@ class ClientSafeConfig {
     constructor() {
         this.config = {
             partnerImportExportEnable: process.env.PARTNER_IMPORT_EXPORT_ENABLE === "true",
-            verifyServiceUrl: process.env.VERIFY_SERVICE_URL ?? "",
+            verifyServiceUrl: process.env.VC_VERIFICATION_SERVICE_URL ?? "",
             vpClientId: process.env.VP_CLIENT_ID ?? "",
-            partnerIngestUrl: process.env.PARTNER_INGEST_URL ?? "",
             pageSize: parseInt(process.env.PAGE_SIZE ?? "10"),
             registryName: "",
             registryLogo: "",
@@ -32,7 +30,7 @@ class ClientSafeConfig {
 
     async fetchRegistryConfig(origin: string): Promise<ClientSafeConfigShape> {
         const backendConfig = getBackendConfig();
-        const backendUrl = `${backendConfig.backendApiUrl}/registry-config/get_registry_configuration`;
+        const backendUrl = `${backendConfig.registryStaffApiUrl}/registry-config/get_registry_configuration`;
 
         try {
             const auth = await requireAuthFromCookies();

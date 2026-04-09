@@ -5,9 +5,9 @@ export async function GET(req: NextRequest) {
     const redirectUri = req.nextUrl.searchParams.get('redirect_uri') || '/';
 
     const backendConfig = getBackendConfig()
-    const iamUrl = `${backendConfig.iamUrl}${"/auth/start_authentication_transaction"}`;
+    const iamApiUrl = `${backendConfig.iamApiUrl}${"/auth/start_authentication_transaction"}`;
 
-    const url = `${iamUrl}?id=${backendConfig.loginProviderId}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+    const url = `${iamApiUrl}?id=${backendConfig.loginProviderId}&redirect_uri=${encodeURIComponent(redirectUri)}`;
 
     const res = await fetch(url, {
         method: 'POST',
